@@ -4,11 +4,11 @@
 ### 1.) Login  
 ![Login](https://user-images.githubusercontent.com/77045083/117059480-0bacef00-ad4a-11eb-99c5-cc9ce21c6677.png)  
 ### 2.) Menu  
-![Menu](https://user-images.githubusercontent.com/77045083/117059595-2c754480-ad4a-11eb-9be6-768608013227.png)  
+![Menu](https://user-images.githubusercontent.com/77045083/117723464-99864f80-b20c-11eb-9518-8692b8719625.png)
 ### 3.) Chat  
-![Chat](https://user-images.githubusercontent.com/77045083/117059600-2e3f0800-ad4a-11eb-99db-aed3c318c6ed.png)  
+![Chat](https://user-images.githubusercontent.com/77045083/117723470-9b501300-b20c-11eb-8586-6d56424f9d77.png)
 ### 4.) Profile  
-![Profile](https://user-images.githubusercontent.com/77045083/117059608-3008cb80-ad4a-11eb-8159-d9fae82c7ee6.png)  
+![Profile](https://user-images.githubusercontent.com/77045083/117723450-97bc8c00-b20c-11eb-94b0-38948cb1c4fe.png)
 ### 5.) Validasi  
 ![Validasi](https://user-images.githubusercontent.com/77045083/117059613-31d28f00-ad4a-11eb-8eb6-7712651e0f31.png)
 
