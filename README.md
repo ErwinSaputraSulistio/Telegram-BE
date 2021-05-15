@@ -20,7 +20,6 @@
 
 ## Links :  
 Frontend : https://github.com/ErwinSaputraSulistio/Telegram-FE  
-Backend : https://github.com/ErwinSaputraSulistio/Telegram-BE  
 
 ## Tools :  
 ![Node Logo](https://user-images.githubusercontent.com/77045083/110448204-8dd6b980-80f3-11eb-89b6-13397ed8a31e.png)
