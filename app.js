@@ -8,7 +8,7 @@ const socket = require('socket.io')
 const route = require('./files/routes')
 const moment = require('moment')
 moment.locale('id');
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 const host = process.env.DB_HOST
 
 const app = express()
