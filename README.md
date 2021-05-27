@@ -2,7 +2,7 @@
   <img src="https://i.pinimg.com/originals/74/e6/ec/74e6ec9d86017536f2b0367c21f38319.png" width="222">
 </p>
 
-## :mag_right: About Z-Wallet
+## :mag_right: About Telegram
     Urgently need to contact someone? Or just want to chit-chat with an old friend but don't have time 
     for a sweet reunion? Dont' worry, Telegram is here. We provide real-time chat for all of our users 
     with add-friends system, so only people you acknowledge that can contact you. Yeah, just between 
