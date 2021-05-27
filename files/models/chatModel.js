@@ -23,6 +23,7 @@ exports.checkChatConnectionByUserId = (id) => {
          'user_image', second.user_image, \
          'real_name', second.real_name, \
          'phone_number', second.phone_number, \
+         'biodata', second.biodata, \
          'created_at', chat_connection.created_at) \
       ELSE JSON_BUILD_OBJECT(\
          'connection_id', connection_id, \
@@ -30,6 +31,7 @@ exports.checkChatConnectionByUserId = (id) => {
          'user_image', first.user_image, \
          'real_name', first.real_name, \
          'phone_number', first.phone_number, \
+         'biodata', first.biodata, \
          'created_at', chat_connection.created_at) \
       END AS connection_data from chat_connection \
       INNER JOIN users first ON first.user_id = first_id \
@@ -40,6 +42,16 @@ exports.checkChatConnectionByUserId = (id) => {
       db.query(connectionQuery, (err, result) => {
          if(result.rows.length === 0) { reject('Tidak dapat menemukan koneksi chat dengan ID user yang berhubungan!') }
          else if (!err) { resolve(result.rows) }
+         else { reject(err) }
+      })
+   })
+}
+
+// DELETE CHAT CONNECTION / FRIEND
+exports.removeConnection = (id) => {
+   return new Promise((resolve, reject) => {
+      db.query("DELETE FROM chat_connection WHERE connection_id = '" + id + "'", (err, result) => {
+         if (!err) { resolve("Berhasil hapus koneksi pertemanan user beserta histori chat!") }
          else { reject(err) }
       })
    })

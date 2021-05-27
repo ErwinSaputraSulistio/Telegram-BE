@@ -37,6 +37,22 @@ exports.readChatConnectionByUserId = (req, res) => {
    catch (err) { callResult.returnFailed(res, 500, err.message) }
 }
 
+// DELETE CONNECTION / FRIEND
+exports.removeFriend = (req, res) => {
+   const id = req.params.id
+   console.log(id)
+   try { 
+      chatModel.removeChatHistory(id)
+      .then(() => { 
+         chatModel.removeConnection(id)
+         .then((result) => { callResult.returnSuccess(res, 200, result) })
+         .catch((err) => { callResult.returnFailed(res, 400, err) })
+      })
+      .catch((err) => { callResult.returnFailed(res, 400, err) })
+    }
+    catch (err) { callResult.returnFailed(res, 500, err.message) }
+}
+
 // SAVE CHAT HISTORY
 exports.backupChat = (req, res) => {
    const { id, sender, receiver, message } = req.body

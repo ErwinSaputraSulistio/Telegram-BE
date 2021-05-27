@@ -10,5 +10,6 @@ route
    .get("/history/:id", chatController.readChatHistory)
    .get("/latest/:id", chatController.readLatestHistory)
    .delete("/history/:id", chatController.deleteChatHistory)
+   .delete("/connection/:id", chatController.removeFriend)
 
 module.exports = route
