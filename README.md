@@ -2,11 +2,20 @@
   <img src="https://i.pinimg.com/originals/74/e6/ec/74e6ec9d86017536f2b0367c21f38319.png" width="222">
 </p>
 
+## :mag_right: About Z-Wallet
+    Urgently need to contact someone? Or just want to chit-chat with an old friend but don't have time 
+    for a sweet reunion? Dont' worry, Telegram is here. We provide real-time chat for all of our users 
+    with add-friends system, so only people you acknowledge that can contact you. Yeah, just between 
+    you and your friends, no more spam of annoying messages from marketing and suspicious peoples!
+    
+    "Telegram, connecting the feelings from one to another, distance is not a matter anymore."
+
 ## :question: How to install & start?   
     git clone https://github.com/ErwinSaputraSulistio/Telegram-BE
     cd Telegram-BE
     npm install
     nodemon app.js
+Frontend (GitHub Repository) : https://github.com/ErwinSaputraSulistio/Telegram-FE 
 
 ## :page_with_curl: Backend - List of Endpoints
     http://localhost:2500/v1/Path
@@ -34,7 +43,6 @@ Path | Method | Explanation
 
 ## :pushpin: Links :  
 Postman : https://documenter.getpostman.com/view/14851668/TzXxicwu  
-Frontend : https://github.com/ErwinSaputraSulistio/Telegram-FE  
 Deploy : https://telegram-erwinsaputrasulistio.vercel.app  
 
 ## :hammer_and_wrench: Build with :  
