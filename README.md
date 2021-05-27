@@ -33,6 +33,7 @@ Path | Method | Explanation
 /chat/history/:id | GET | Show chat history
 
 ## :pushpin: Links :  
+Postman : https://documenter.getpostman.com/view/14851668/TzXxicwu  
 Frontend : https://github.com/ErwinSaputraSulistio/Telegram-FE  
 Deploy : https://telegram-erwinsaputrasulistio.vercel.app  
 
