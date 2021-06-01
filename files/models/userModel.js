@@ -126,3 +126,12 @@ exports.setLoginStateFalse = (id) => {
       }) 
    })
 }
+
+// user - reset password
+exports.resetUserPassword = (userpassword, useremail) => {
+   return new Promise((resolve, reject) => {
+     db.query("UPDATE users SET user_password = '" + userpassword + "' WHERE user_email = '" + useremail + "'", (err, result) => {
+       if (!err) { resolve(result.rows) } else { reject(err) }
+     })
+   })
+ }

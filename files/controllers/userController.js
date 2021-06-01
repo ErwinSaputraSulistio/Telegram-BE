@@ -171,3 +171,75 @@ exports.changeUserAvatar = (req, res) => {
    } 
    catch (err) { callResult.returnFailed(res, 400, 'Gagal mengubah avatar user!') }
 }
+
+// reset password
+exports.sendResetPasswordMail = (req, res) => {
+   try {
+     const mail = req.body.userEmail
+     if(mail === undefined) { res.status(400).json({ callResult: 'Failed', statusCode: 404, errorMessage: 'Email tidak boleh kosong!' }) }
+     else {
+       const payload = { mail }
+       jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: 60 * 15 }, (err, token) => {
+         callResult.returnSuccess(res, 200, {email: mail, jwtToken: token})
+         NM.resetPassword(token, mail)
+       })
+     }
+   } catch (err) { res.send('ERROR : ' + err.message) }
+ }
+ 
+ exports.checkIfJwtResetValid = (req, res) => {
+   const checkJwtToken = req.params.id
+   try {
+     if (checkJwtToken === null || checkJwtToken == undefined) { res.json({ checkResult: 'Failed', statusCode: 401, errorDetail: 'Invalid JWT token!' }) } else {
+       jwt.verify(checkJwtToken, process.env.JWT_SECRET_KEY, (err, user) => {
+         cancelCreateUser = (error) => {
+           userModel.removeUserData("userId")
+             .then(() => { res.status(401).json({ checkResult: 'Failed', statusCode: 401, jwtError: error }) })
+             .catch((err) => { console.log(err) })
+         }
+         if (err) {
+           console.log(err)
+           let errMsg = ''
+           if (err.name === 'JsonWebTokenError') { errMsg = 'Invalid JWT token!' } else if (err.name === 'TokenExpiredError') { errMsg = 'JWT token already expired!' } else { errMsg = 'JWT token not active!' }
+           cancelCreateUser(errMsg)
+         } else {
+            callResult.returnSuccess(res, 201, 'JWT token untuk reset password masih aktif!')
+         }
+       })
+     }
+   } catch (err) { res.send('ERROR : ' + err.message) }
+ }
+ 
+exports.resetPassword = (req, res) => {
+const { checkJwtToken, newPassword, retypePassword } = req.body
+console.log(checkJwtToken)
+try {
+   if (checkJwtToken === null || checkJwtToken == undefined) { res.json({ checkResult: 'Failed', statusCode: 401, errorDetail: 'Invalid JWT token!' }) } else {
+      jwt.verify(checkJwtToken, process.env.JWT_SECRET_KEY, (err, user) => {
+      if (err) {
+         let errMsg = ''
+         if (err.name === 'JsonWebTokenError') { errMsg = 'Invalid JWT token!' } else if (err.name === 'TokenExpiredError') { errMsg = 'JWT token already expired!' } else { errMsg = 'JWT token not active!' }
+         res.status(400).json({ callResult: 'Failed', statusCode: 400, errorMessage: errMsg })
+      } 
+      else {
+         if(newPassword === undefined || retypePassword === undefined) { res.status(400).json({ callResult: 'Failed', statusCode: 404, errorMessage: 'Password tidak boleh kosong!' }) }
+         else { 
+            if(newPassword !== retypePassword) {
+            res.status(400).json({ callResult: 'Failed', statusCode: 404, errorMessage: 'Proses reset gagal, new password dan retype password masih berbeda, keduanya harus sama!' })
+            }
+            else if(newPassword.length < 8 || retypePassword.length < 8) { 
+            res.status(400).json({ callResult: 'Failed', statusCode: 404, errorMessage: 'Proses reset gagal, panjang password minimal 8 karakter!' })
+            }
+            else {
+            const hashedResetPassword = bcrypt.hashSync(newPassword, salt)
+            userModel.resetUserPassword(hashedResetPassword, user.mail)
+               .then(() => { callResult.returnSuccess(res, 200, 'Reset password berhasil, silahkan login!') })
+               .catch((err) => { res.send(err.message) })
+            } 
+         }
+      }
+      })
+   }
+} catch (err) { res.send('ERROR : ' + err.message) }
+}
+ 

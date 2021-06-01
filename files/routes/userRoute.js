@@ -17,5 +17,8 @@ route
    .get('/verify/:id', userController.verifyNewUser)
    .post('/jwt', userController.returnLoginTokenAsUserData)
    .patch('/change/avatar/:id', jwtCheck.verifyJwtToken, uploadAvatar, userController.changeUserAvatar)
+   .post('/reset/send-mail', userController.sendResetPasswordMail)
+   .put('/reset/new-password', userController.resetPassword)
+   .get('/reset/:id', userController.checkIfJwtResetValid)
 
 module.exports = route
