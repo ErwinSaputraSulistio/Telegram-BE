@@ -192,16 +192,10 @@ exports.sendResetPasswordMail = (req, res) => {
    try {
      if (checkJwtToken === null || checkJwtToken == undefined) { res.json({ checkResult: 'Failed', statusCode: 401, errorDetail: 'Invalid JWT token!' }) } else {
        jwt.verify(checkJwtToken, process.env.JWT_SECRET_KEY, (err, user) => {
-         cancelCreateUser = (error) => {
-           userModel.removeUserData("userId")
-             .then(() => { res.status(401).json({ checkResult: 'Failed', statusCode: 401, jwtError: error }) })
-             .catch((err) => { console.log(err) })
-         }
          if (err) {
-           console.log(err)
            let errMsg = ''
            if (err.name === 'JsonWebTokenError') { errMsg = 'Invalid JWT token!' } else if (err.name === 'TokenExpiredError') { errMsg = 'JWT token already expired!' } else { errMsg = 'JWT token not active!' }
-           cancelCreateUser(errMsg)
+           callResult.returnFailed(res, 400, errMsg)
          } else {
             callResult.returnSuccess(res, 201, 'JWT token untuk reset password masih aktif!')
          }
